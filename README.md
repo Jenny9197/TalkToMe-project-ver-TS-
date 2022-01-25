@@ -4,9 +4,9 @@
 https://hub.docker.com/repository/docker/shj0110/talktome2_project
 
 ```
-docker build -t shj0110/talktome2_project:lastest .
-docker push shj0110/talktome2_project:lastest
-docker run -d -p 80:3000 --name ttmp shj0110/talktome2_project:lastest
+docker build -t shj0110/talktome2_project:latest .
+docker push shj0110/talktome2_project:latest
+docker run -d -p 80:3000 --name ttmp shj0110/talktome2_project:latest
 ```
 Description:
 Docker 이미지 create
