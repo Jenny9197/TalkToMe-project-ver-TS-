@@ -25,24 +25,22 @@ export function UserFactory(sequelize: Sequelize): UserStatic {
                 autoIncrement: true,
                 primaryKey: true,
                 type: DataTypes.INTEGER,
-                unique: true,
             },
             email: {
                 type: DataTypes.STRING(40),
                 allowNull: true,
-                unique: true,
             },
             nickname: {
                 type: DataTypes.STRING(20),
                 allowNull: false,
+                defaultValue: 'temporary',
             },
             refreshtoken: {
                 type: DataTypes.STRING(20),
-                allowNull: true,
             },
             provider: {
                 type: DataTypes.STRING(20),
-                allowNull: true,
+                allowNull: false,
             },
             snsId: {
                 type: DataTypes.STRING(20),
