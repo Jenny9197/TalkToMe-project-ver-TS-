@@ -1,13 +1,11 @@
 import { Request, Response, NextFunction } from 'express';
-import * as Joi from "joi"
-
 
 export function isLoggedIn = (req: Request, res: Response, next: NextFunction) => {
     if (req.isAuthenticated()) {
         res.locals.user = userId;
         next();
     } else {
-        console.log(req: Request);
+        console.log(req);
         return res.status(403).send('로그인이 필요합니다.');
     }
 };
