@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
-import passport from "passport";
+import passport from 'passport';
 
 export function logInOnly(req:Request, res:Response, next:NextFunction){
     try {
         console.log("어디가 문제야");
-        passport.authenticate("jwt", (passportError, user, info) => {
+        passport.authenticate("jwt", (passportError:string, user:string, info:string) => {
             if (passportError) {
                 console.error("passportError:", passportError);
                 return res.send({ message: passportError });
