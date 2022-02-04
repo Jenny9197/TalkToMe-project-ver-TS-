@@ -12,8 +12,8 @@ export function logInOnly(req:Request, res:Response, next:NextFunction){
             if(!user) {
                 return res.status(401).send({ message: info.message });
             }
-            res.locals.user = user.dataValues.userId;
-            res.locals.nick = user.dataValues.nickname;
+            res.locals.user = user;
+            res.locals.nick = nickname;
             next();
         }) (req, res, next);
     } catch (error) {

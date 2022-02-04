@@ -1,8 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 
-const isLoggedIn = (req: Request, res: Response, next: NextFunction) => {
+export const isLoggedIn = (req: Request, res: Response, next: NextFunction) => {
     if (req.isAuthenticated()) {
-        
         next();
     } else {
         console.log(req);
@@ -20,6 +19,5 @@ const isNotLoggedIn = (req: Request, res: Response, next: NextFunction) => {
     }
 };
 
-const middle = {isLoggedIn, isNotLoggedIn};
- 
+// const middle = {isLoggedIn, isNotLoggedIn};
 export default middle;
