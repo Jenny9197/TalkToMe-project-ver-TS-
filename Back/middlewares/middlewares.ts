@@ -1,16 +1,14 @@
 import { Request, Response, NextFunction } from 'express';
 
-export function isLoggedIn = (req: Request, res: Response, next: NextFunction) => {
+export const isLoggedIn = (req: Request, res: Response, next: NextFunction) => {
     if (req.isAuthenticated()) {
-        res.locals.user = userId;
         next();
     } else {
         console.log(req);
         return res.status(403).send('로그인이 필요합니다.');
     }
 };
-
-export function isNotLoggedIn = (req: Request, res: Response, next: NextFunction) => {
+export const isNotLoggedIn = (req: Request, res: Response, next: NextFunction) => {
     if (!req.isAuthenticated()) {
         console.log('!');
         next();
@@ -19,3 +17,6 @@ export function isNotLoggedIn = (req: Request, res: Response, next: NextFunction
         return res.redirect(`/?error=${message}`);
     }
 };
+
+const middle = {isLoggedIn, isNotLoggedIn};
+export default middle;
