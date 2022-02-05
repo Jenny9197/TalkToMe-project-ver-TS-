@@ -1,11 +1,12 @@
-import * as Sequelize from 'sequelize';
-import { config } from '../config/config';
-import { UserFactory } from './userModel';
-import { BoardFactory } from './boardModel';
-import { CommentFactory } from './commentModel';
-import { SelectFactory } from './selectModel';
-import { SelectCountFactory } from './selectCountModel';
-import { BoardLikeFactory } from './boardLikeModel';
+import * as Sequelize from "sequelize";
+import { config } from "../config/config";
+import { UserFactory } from "./userModel";
+import { BoardFactory } from "./boardModel";
+import { CommentFactory } from "./commentModel";
+import { SelectFactory } from "./selectModel";
+import { SelectCountFactory } from "./selectCountModel";
+import { BoardLikeFactory } from "./boardLikeModel";
+
 
 const sequelize = new Sequelize.Sequelize(
    config.development.database,

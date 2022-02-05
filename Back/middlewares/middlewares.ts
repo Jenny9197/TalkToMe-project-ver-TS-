@@ -8,7 +8,8 @@ export const isLoggedIn = (req: Request, res: Response, next: NextFunction) => {
         return res.status(403).send('로그인이 필요합니다.');
     }
 };
-export const isNotLoggedIn = (req: Request, res: Response, next: NextFunction) => {
+
+const isNotLoggedIn = (req: Request, res: Response, next: NextFunction) => {
     if (!req.isAuthenticated()) {
         console.log('!');
         next();
