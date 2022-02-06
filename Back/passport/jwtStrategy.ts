@@ -1,18 +1,19 @@
 import passport = require('passport');
-import { ExtractJwt, JWTStrategy } from 'passport-jwt';
-import User from '../models';
+import passprotjwt from 'passport-jwt';
+import {User} from '../models';
+import { UserModel } from '../models/userModel';
 
-public const JWTConfig = {
-  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+const JWTConfig = {
+  jwtFromRequest: passprotjwt.ExtractJwt.fromAuthHeaderAsBearerToken(),
   secretOrKey: process.env.SECRET_KEY,
 };
 
-const JWTVerify = async (jwtPayload, done) => {
+const JWTVerify = async (jwtPayload:UserModel, done:passprotjwt.VerifiedCallback) => {
   try {
       console.log('어디냐?',jwtPayload)
-      
+      const userid:number = jwtPayload.userId as number;
     const user = await User.findOne({
-      where: { userId: jwtPayload.userId },
+      where: { userId: userid },
     });
     
     if (user) {
@@ -28,7 +29,7 @@ const JWTVerify = async (jwtPayload, done) => {
   }
 };
 function jwt() {
-  passport.use('jwt', new JWTStrategy(JWTConfig, JWTVerify));
+  passport.use('jwt', new passprotjwt.Strategy(JWTConfig, JWTVerify));
 }
 
 module.exports = {JWTConfig, JWTVerify, jwt}
