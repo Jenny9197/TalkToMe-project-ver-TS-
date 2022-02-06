@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { Board, BoardLike } from "../models";
 import sequelize  from "../models";
+import { QueryTypes } from "sequelize/dist";
 
 //고민 작성 페이지 - 게시글 작성
 class boardFunc {
@@ -41,7 +42,7 @@ class boardFunc {
         res.cookie("s" + boardId, this.getUserIP(req), {
           maxAge: 720000, //12분 // maxAge: 1200000,
         });
-        await Board.increment({ BoardViewCount: +1 }, { where: { boardId } });
+        await Board.increment({ boardViewCount: +1 }, { where: { boardId } });
       }
       //닉네임 추가
       const query = `SELECT s.boardId, u.userId, u.nickname, s.boardTitle, s.boardDesc, s.boardViewCount, count(c.commentId) as commentCount, s.updatedAt
@@ -54,8 +55,8 @@ class boardFunc {
             GROUP BY s.boardId
             ORDER BY s.createdAt DESC`;
 
-      const boardList = await sequelize.query(query, {
-        type: sequelize.QueryTypes.SELECT,
+      const boardList = await sequelize.sequelize.query(query, {
+        type: QueryTypes.SELECT,
       });
       return res.status(200).send({
         boardList,
@@ -72,7 +73,7 @@ class boardFunc {
   //게시글 좋아요/취소
   public postOrLike = async (req: Request, res: Response) => {
     try {
-      const { boardId } = req.params;
+      const  boardId:number = Number(req.params.boardId as String);
       const userId = res.locals.user;
       //console.log(boardId, userId);
 
