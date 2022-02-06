@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Board, BoardLike } from "../models";
-import sequelize  from "../models";
+import sequelize from "../models";
 import { QueryTypes } from "sequelize/dist";
 
 //고민 작성 페이지 - 게시글 작성
@@ -73,7 +73,7 @@ class boardFunc {
   //게시글 좋아요/취소
   public postOrLike = async (req: Request, res: Response) => {
     try {
-      const  boardId:number = Number(req.params.boardId as String);
+      const boardId: number = Number(req.params.boardId as String);
       const userId = res.locals.user;
       //console.log(boardId, userId);
 
@@ -128,8 +128,8 @@ class boardFunc {
                         GROUP BY s.boardId
                         ORDER BY ${sort} DESC`;
 
-      const boardViewList = await sequelize.query(query, {
-        type: sequelize.QueryTypes.SELECT,
+      const boardViewList = await sequelize.sequelize.query(query, {
+        type: QueryTypes.SELECT,
       });
 
       res.status(200).send({
@@ -154,7 +154,8 @@ class boardFunc {
       });
       if (exBoard) {
         await Board.update({ boardTitle, boardDesc }, { where: { boardId } });
-        res.status(200).json({ result: "success", msg: "수정완료" });
+        res
+          .status(200).json({ result: "success", msg: "수정완료" });
         return;
       } else {
         res
@@ -166,7 +167,8 @@ class boardFunc {
       res.json({ result: "success" });
     } catch (err) {
       console.log(err);
-      res.status(400).send({
+      res
+        .status(400).send({
         msg: "게시글 수정에 실패했습니다.",
       });
     }
@@ -194,15 +196,17 @@ class boardFunc {
       res.json({ result: "success" });
     } catch (err) {
       console.log(err);
-      res.status(400).send({
+      res
+        .status(400).send({
         msg: "게시글 삭제에 실패했습니다.",
       });
     }
   };
 
+  //Bring Ip from accessed User
   public getUserIP(req: Request) {
     console.log(req.headers);
-    const addr = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
+    const addr = req.headers["x-forwarded-for"];
     return addr;
   }
 }
