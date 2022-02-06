@@ -24,8 +24,6 @@ export const Select = SelectFactory(sequelize);
 export const SelectCount = SelectCountFactory(sequelize);
 export const BoardLike = BoardLikeFactory(sequelize);
 
-const db = { User, Board, Comment, Select, SelectCount, BoardLike };
-
 // User Table relationship set
 User.hasMany(Board, {
     foreignKey: "userId",
@@ -126,4 +124,5 @@ BoardLike.hasMany(Board, {
     foreignKey: "boardLikeId",
     sourceKey: "boardLikeId",
 });
+
 export default {sequelize, User, Board, Comment, Select, SelectCount, BoardLike};
