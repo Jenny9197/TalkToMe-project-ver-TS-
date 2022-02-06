@@ -2,7 +2,7 @@ import passport from "passport";
 // const google = require('passport-google-oauth2');
 import google from './googleStrategy';
 import { User } from '../models';
-import ExtractJwt, Strategy: JWTStrategy from 'passport-jwt';
+import ExtractJwt, JWTStrategy from 'passport-jwt';
 import jwt from './jwtStrategy';
 
 
