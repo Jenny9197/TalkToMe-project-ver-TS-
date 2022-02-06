@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import Comment from '../models';
+import { Comment } from '../models';
 
 
 class commentFunc {
@@ -10,8 +10,8 @@ class commentFunc {
             const { boardId } = req.params;
             const commentList = await Comment.findAll({ where: {boardId: boardId}});
             res.status(200).json({ result: 'success', commentList})
-          } catch {
-            console.error(error);
+          } catch (error) {
+            console.log(error);
             res.status(400).json({
               result: 'fail',
               errormessage: '댓글이 없거나 댓글 등록 할수 없습니다.',
@@ -22,7 +22,7 @@ class commentFunc {
     public writeComment = async (req: Request, res: Response) => {
         try {
             const userId = res.locals.user;
-            const { boardId } = req.params;
+            const boardId: number = Number(req.params.boardId as String);
             const { comment } = req.body;
             console.log(boardId);
             console.log(userId);
@@ -36,7 +36,6 @@ class commentFunc {
             await Comment.create({
                 boardId: boardId,
                 userId: userId,
-                boardId: boardId,
                 comment: comment,
             });
 

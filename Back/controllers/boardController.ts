@@ -163,8 +163,6 @@ class boardFunc {
           .json({ result: "fail", msg: "수정할 수 없는 게시물 입니다." });
         return;
       }
-
-      res.json({ result: "success" });
     } catch (err) {
       console.log(err);
       res
@@ -192,8 +190,6 @@ class boardFunc {
           .json({ result: "fail", msg: "삭제할 수 없는 게시물 입니다." });
         return;
       }
-
-      res.json({ result: "success" });
     } catch (err) {
       console.log(err);
       res
