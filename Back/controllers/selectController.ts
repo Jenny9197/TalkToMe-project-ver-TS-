@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
-import { User } from '../models';
+import { User, Select, SelectCount } from '../models';
 import sequelize from "../models";
 import { QueryTypes } from "sequelize/dist";
+
 
 class selectFunc {
     public getSelects = async (req: Request, res: Response) => {
@@ -36,7 +37,7 @@ class selectFunc {
     };
 
     class SelectInfo {
-      constructor(userId:number, selectTitle:string, selectDesc:string, option1:string, option2:string, option3:string, option4:string, option5:string, endDate:number) {
+      constructor(userId:number, selectTitle:string, selectDesc:string, option1:number, option2:number, option3:number, option4:string, option5:string, endDate:number) {
         this.userId = userId;
         this.selectTitle = selectTitle;
         this.selectDesc = selectDesc;
