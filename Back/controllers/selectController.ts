@@ -73,7 +73,7 @@ class selectFunc {
             
             console.log('여기',req.headers.cookie);
             if (req.cookies['s' + selectId] == undefined) {
-            res.cookie('s' + selectId, getUserIP(req), {
+            res.cookie('s' + selectId, this.getUserIP(req), {
                 maxAge: 720000, //12분
                 // maxAge: 1200000,
             });

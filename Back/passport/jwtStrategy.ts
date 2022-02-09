@@ -1,4 +1,4 @@
-import passport = require('passport');
+import passport from 'passport';
 import passportjwt from 'passport-jwt';
 import {User} from '../models';
 import { UserModel } from '../models/userModel';

@@ -6,8 +6,8 @@ import { QueryTypes } from "sequelize/dist";
 class searchFunc {
     public homeSearchFunc = async (req:Request, res:Response) => {
         try {
-            const userId = user.userId
-            const { keyword, group } = req.query;
+            const userId = res.locals.user;
+            let { keyword, group } = req.query;
             console.log(group == 'board');
             const keywords = keyword.split(' ')
             
