@@ -22,7 +22,7 @@ class commentFunc {
     public writeComment = async (req: Request, res: Response) => {
         try {
             const userId = res.locals.user;
-            const boardId: number = Number(req.params.boardId as String);
+            const boardId: number = Number(req.params.boardId as string);
             const { comment } = req.body;
             console.log(boardId);
             console.log(userId);

@@ -9,7 +9,7 @@ class UserFunc {
             const user = req.user!; 
             const userId = user.userId;
             const token = Jwt.sign({ userId }, process.env.SECRET_KEY || "test", { expiresIn: '1d' });
-            const message = 'login success';
+            const message : string = 'login success';
             res.redirect(`http://localhost:3000/sociallogin/accessToken=${token}?message=${message}`);
         } catch (error) {
             console.log(error);

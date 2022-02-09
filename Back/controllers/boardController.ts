@@ -73,7 +73,7 @@ class boardFunc {
   //게시글 좋아요/취소
   public postOrLike = async (req: Request, res: Response) => {
     try {
-      const boardId: number = Number(req.params.boardId as String);
+      const boardId: number = Number(req.params.boardId as string);
       const userId = res.locals.user;
       //console.log(boardId, userId);
 
