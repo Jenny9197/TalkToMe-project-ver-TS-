@@ -19,5 +19,5 @@ const isNotLoggedIn = (req: Request, res: Response, next: NextFunction) => {
     }
 };
 
-// const middle = {isLoggedIn, isNotLoggedIn};
+const middle = {isLoggedIn, isNotLoggedIn};
 export default middle;
