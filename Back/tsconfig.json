@@ -3,7 +3,7 @@
     "typeRoots": ["./node_modules/@types", "./types"], 
     "lib": ["esnext"],
     "target": "es6",
-    "module": "esnext",
+    "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "strict": true,

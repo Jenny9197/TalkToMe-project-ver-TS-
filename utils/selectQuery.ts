@@ -1,4 +1,4 @@
-import sequelize from "../models";
+import sequelize from "../Back/models";
 import { QueryTypes } from "sequelize/dist";
 
 exports.PopBoardHomeLogin = async function (user_id: any) {
