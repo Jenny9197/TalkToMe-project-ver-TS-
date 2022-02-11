@@ -88,3 +88,13 @@ git add .
 git commit -m
 git push
 ```
+
+~ Feb 11
+```
+Except focusing on error, try to convert from JS to TS
+```
+Feb 12 pre-plan
+```
+error fixed
+learn web crawler
+```
