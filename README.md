@@ -89,10 +89,11 @@ git commit -m
 git push
 ```
 
-~ Feb 11
+Jan 27 ~ Feb 11
 ```
 Except focusing on error, try to convert from JS to TS
 ```
+
 Feb 12 pre-plan
 ```
 error fixed
