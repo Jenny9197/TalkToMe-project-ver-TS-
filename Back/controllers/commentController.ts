@@ -129,4 +129,4 @@ class commentFunc {
     }
 }
 
-module.exports = new commentFunc;
+export = new commentFunc;

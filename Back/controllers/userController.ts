@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import Jwt  from 'jsonwebtoken';
+import Jwt from 'jsonwebtoken';
 import { User } from '../models/userModel';
 
 
