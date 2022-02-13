@@ -99,3 +99,12 @@ Feb 13, 2022
 ```
 All errors caught and solved. TS files are completely done.
 ```
+Jsonwebtoken 에러 해결
+```
+npm i --save-dev @types/jsonwebtoken
+```
+
+TS 파일 실행하고자 할 때
+```
+npx ts-node app.ts
+```
