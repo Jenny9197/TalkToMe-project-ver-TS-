@@ -11,6 +11,3 @@ router.get('/google/callback', passport.authenticate('google', { failureRedirect
 router.get('/me', logInOnly, userController.me);
 
 export default router;
-
-
-//error occurred "module userController has no default export from line 6
