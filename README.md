@@ -89,13 +89,13 @@ git commit -m
 git push
 ```
 
-Jan 27 ~ Feb 11
+Jan 27 ~ Feb 11, 2022
 ```
 Except focusing on error, try to convert all files from JS to TS
 This part is only concentrated on Back-end.
 ```
 
-Feb 13 
+Feb 13, 2022
 ```
 All errors caught and solved. TS files are completely done.
 ```
