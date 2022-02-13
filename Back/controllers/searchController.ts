@@ -61,4 +61,4 @@ class searchFunc {
 }
 
 
-module.exports = new searchFunc();
+export = new searchFunc();

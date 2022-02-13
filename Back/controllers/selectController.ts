@@ -193,4 +193,4 @@ class SelectInfo {
 }
   
   
-module.exports = new selectFunc();
+export = new selectFunc();
