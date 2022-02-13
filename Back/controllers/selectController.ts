@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { User, Selects, SelectCount } from '../models';
 import sequelize from "../models";
 import { QueryTypes } from "sequelize/dist";
-import { SelectFactory } from "../models/selectModel";
+
 
 
 class selectFunc {
