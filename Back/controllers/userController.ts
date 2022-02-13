@@ -30,4 +30,4 @@ class UserFunc {
     }
 }
 
-module.exports = new UserFunc();
+export = new UserFunc();
