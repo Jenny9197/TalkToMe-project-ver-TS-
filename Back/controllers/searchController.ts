@@ -2,11 +2,6 @@ import { Request, Response } from "express";
 import sequelize from '../models';
 import { QueryTypes } from "sequelize/dist";
 
-
-interface test{
-    keyword:string|undefined,
-    group: string|undefined,
-}
 class searchFunc {
     public homeSearchFunc = async (req:Request, res:Response) => {
         try {
