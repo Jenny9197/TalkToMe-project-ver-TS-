@@ -207,4 +207,4 @@ class boardFunc {
   }
 }
 
-module.exports = new boardFunc();
+export = new boardFunc();

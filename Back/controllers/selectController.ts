@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
-import { User, Select, SelectCount } from '../models';
+import { User, Selects, SelectCount } from '../models';
 import sequelize from "../models";
 import { QueryTypes } from "sequelize/dist";
+import { SelectFactory } from "../models/selectModel";
 
 
 class selectFunc {
@@ -35,28 +36,15 @@ class selectFunc {
           });
         }
     };
+  }
 
-    class SelectInfo {
-      constructor(userId:number, selectTitle:string, selectDesc:string, option1:number, option2:number, option3:number, option4:string, option5:string, endDate:number) {
-        this.userId = userId;
-        this.selectTitle = selectTitle;
-        this.selectDesc = selectDesc;
-        this.option1 = option1;
-        this.option2 = option2;
-        this.option3 = option3;
-        this.option4 = option4;
-        this.option5 = option5;
-        this.endDate = endDate;
-    }
-      
-
+class SelectInfo {
       public writeSelect = async (req: Request, res: Response) => {
         try {
           const userId = res.locals.user;
           const { selectTitle, selectDesc, option1, option2, option3, option4, option5, endDate } = req.body;
-          const selectInfo = new SelectInfo(userId, selectTitle, selectDesc, option1, option2, option3, option4, option5, endDate);
-          await Select.create(selectInfo);
-          
+          const selectInfo = { selectTitle, selectDesc, option1, option2, option3, option4, option5, endDate };
+          await Selects.create(selectInfo);
           res.status(200).json({ result: 'success', selectInfo})
         } catch (error) {
           console.error(error);
@@ -79,7 +67,7 @@ class selectFunc {
                 maxAge: 720000, //12분
                 // maxAge: 1200000,
             });
-            await Select.increment({ selectViewCount: +1 }, { where: { selectId } });
+            await Selects.increment({ selectViewCount: +1 }, { where: { selectId } });
             }
             
             const query = `SELECT t1.selectId, t1.nickname, t1.userId, selectState, t1.selectViewCount, t1.selectTitle, t1.selectDesc, t1.createdAt, t1.option1, t1.option2, t1.option3, t1.option4, t1.option5, t1.participationCount, json_arrayagg(JSON_OBJECT(IFNULL(t2.optionNum,"none"), t2.count))as optionCount
@@ -107,7 +95,7 @@ class selectFunc {
             ORDER BY s.createdAt DESC) as t2
             ON t1.selectId = t2.selectId`
         
-            const selectList = await sequelize.sequelize.query(query, {
+            const selectList:any = await sequelize.sequelize.query(query, {
               type: QueryTypes.SELECT,
             });
             selectList[0].logInUserId = userId
@@ -132,13 +120,15 @@ class selectFunc {
             const userId = res.locals.user;
             const { selectId } = req.params;
             const { optionNum } = req.body;
-            
+            if(!selectId){
+              return res.status(400).send({messge: "selectId가 존재하지 않습니다."})
+            }
             const exUser = await SelectCount.findOne({where: {userId: userId, selectId: selectId}})
         
             if (exUser) {
               await SelectCount.update({optionNum: optionNum},{where: {userId: userId, selectId: selectId} })
             } else {
-              await SelectCount.create({userId: userId, selectId: selectId, optionNum: optionNum})
+              await SelectCount.create({userId: userId, selectId: parseInt(selectId)  , optionNum: optionNum})
             }
             res.status(200).json({ result: 'success' })
         } catch (error) {
@@ -155,9 +145,9 @@ class selectFunc {
             const userId = res.locals.user;
             const { selectId } = req.params;
             const { selectTitle, selectDesc, option1, option2, option3, option4, option5, endDate } = req.body;
-            const exSelect = await Select.findOne({where: { selectId: selectId, userId: userId }})
+            const exSelect = await Selects.findOne({where: { selectId: selectId, userId: userId }})
             if (exSelect) {
-            await Select.update(
+            await Selects.update(
                 { selectTitle, selectDesc, option1, option2, option3, option4, option5, endDate },
                 { where: { selectId } }
             );
@@ -183,9 +173,9 @@ class selectFunc {
             const userId = res.locals.user;
             const { selectId } = req.params;
         
-            const exSelect = await Select.findOne({where: { selectId: selectId, userId: userId }})
+            const exSelect = await Selects.findOne({where: { selectId: selectId, userId: userId }})
             if (exSelect) {
-              await Select.destroy({ where: {selectId:selectId} });
+              await Selects.destroy({ where: {selectId:selectId} });
               res.status(200).json({ result: 'success' });
               return;
             } else {

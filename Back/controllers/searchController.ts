@@ -3,13 +3,20 @@ import sequelize from '../models';
 import { QueryTypes } from "sequelize/dist";
 
 
+interface test{
+    keyword:string|undefined,
+    group: string|undefined,
+}
 class searchFunc {
     public homeSearchFunc = async (req:Request, res:Response) => {
         try {
             const user_Id = req.user;
-            const { keyword, group } = req.query;
+            const { keyword, group } = req.query ;
+            if(!keyword){
+                return res.status(400).send({messge:"keyword가 있어야 됩니다."})
+            }
             console.log(group == 'board');
-            const keywords = keyword.split(' ')
+            const keywords = (keyword as string).split(' ')
             
             if (group == 'board') {
                 let query = `SELECT s.boardId, s.boardTitle, s.boardViewCount, count(c.commentId) as commentCount, s.createdAt

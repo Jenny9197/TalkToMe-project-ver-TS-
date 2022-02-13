@@ -3,7 +3,7 @@ import { config } from '../config/config';
 import { UserFactory } from './userModel';
 import { BoardFactory } from './boardModel';
 import { CommentFactory } from './commentModel';
-import { SelectFactory } from './selectModel';
+import { SelectFactory, Select } from './selectModel';
 import { SelectCountFactory } from './selectCountModel';
 import { BoardLikeFactory } from './boardLikeModel';
 
@@ -20,7 +20,7 @@ const sequelize = new Sequelize.Sequelize(
 export const User = UserFactory(sequelize);
 export const Board = BoardFactory(sequelize);
 export const Comment = CommentFactory(sequelize);
-export const Select = SelectFactory(sequelize);
+export const Selects = SelectFactory(sequelize);
 export const SelectCount = SelectCountFactory(sequelize);
 export const BoardLike = BoardLikeFactory(sequelize);
 
@@ -56,7 +56,7 @@ Board.hasMany(Comment, {
     foreignKey: "boardId",
     sourceKey: "boardId",
 });
-Board.hasMany(Select, {
+Board.hasMany(Selects, {
     foreignKey: "boardId",
     sourceKey: "boardId",
 });
@@ -83,7 +83,7 @@ Comment.hasMany(BoardLike, {
     foreignKey: "commentId",
     sourceKey: "commentId",
 });
-Comment.hasMany(Select, {
+Comment.hasMany(Selects, {
     foreignKey: "commentId",
     sourceKey: "commentId",
 });
@@ -109,7 +109,7 @@ SelectCount.belongsTo(User, {
     targetKey: "selectCountId",
     onDelete: "cascade",
 });
-SelectCount.hasMany(Select, {
+SelectCount.hasMany(Selects, {
     foreignKey: "selectCountId",
     sourceKey: "selectCountId",
 });
