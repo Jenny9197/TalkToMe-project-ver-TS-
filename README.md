@@ -1,4 +1,4 @@
-# re-talktome-project
+# talktome-project TS version
 
 ### Jan 25, 2022 프로젝트 시작
 https://hub.docker.com/repository/docker/shj0110/talktome2_project
@@ -108,3 +108,4 @@ TS 파일 실행하고자 할 때
 ```
 npx ts-node app.ts
 ```
+
